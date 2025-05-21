@@ -77,7 +77,7 @@ A robust Task Management System API built with Laravel that enables users to:
 
 ### Setup Instructions
 1. Clone repository:
-   git clone https://github.com/yourusername/task-management-api.git
+   git clone https://github.com/hamzaIssa254/Prokoders-task.git
    cd task-management-api
 
 2-Install dependencies:
