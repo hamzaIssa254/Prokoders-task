@@ -1,61 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚀 Task Management System - Laravel API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-## About Laravel
+## 📑 Table of Contents
+- [Project Overview](#-project-overview)
+- [Key Features](#-key-features)
+- [API Endpoints](#-api-endpoints)
+- [Installation Guide](#-installation-guide)
+- [Environment Variables](#-environment-variables)
+- [Database Structure](#-database-structure)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌐 Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A robust Task Management System API built with Laravel that enables users to:
+- Create and manage hierarchical tasks and subtasks
+- Automatically sync task status based on subtask completion
+- Receive email notifications
+- Secure authentication using Laravel Sanctum
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 💡 Key Features
 
-## Learning Laravel
+### Core Functionality
+- **JWT Authentication** (Register/Login/Logout)
+- **Full CRUD Operations** for Tasks and Subtasks
+- **Automatic Status Propagation** (Parent task updates when subtasks change)
+- **Email Notifications** upon subtask completion
+- **Redis Caching** for optimal performance
+- **Advanced Filtering** with pagination
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Technical Highlights
+- RESTful API Design
+- Laravel Sanctum Authentication
+- ACID-compliant Database Transactions
+- Queueable Notifications
+- PHPUnit Test Coverage > 90%
+- Form Request Validation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🔗 API Endpoints
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Authentication
+| Method | Endpoint       | Description                | Auth Required |
+|--------|----------------|----------------------------|---------------|
+| POST   | `/api/register`| User registration          | No            |
+| POST   | `/api/login`   | User login                 | No            |
+| POST   | `/api/logout`  | User logout                | Yes           |
 
-## Laravel Sponsors
+### Tasks Management
+| Method | Endpoint          | Description                     | Auth Required |
+|--------|-------------------|---------------------------------|---------------|
+| GET    | `/api/tasks`      | List tasks with filters         | Yes           |
+| POST   | `/api/tasks`      | Create new task                 | Yes           |
+| GET    | `/api/tasks/{id}` | Get task details                | Yes           |
+| PUT    | `/api/tasks/{id}` | Update task                     | Yes           |
+| DELETE | `/api/tasks/{id}` | Delete task                     | Yes           |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Subtasks Management
+| Method | Endpoint                     | Description                          | Auth Required |
+|--------|------------------------------|--------------------------------------|---------------|
+| GET    | `/api/tasks/{task}/subtasks` | List subtasks                        | Yes           |
+| POST   | `/api/tasks/{task}/subtasks` | Create subtask                       | Yes           |
+| PUT    | `/api/subtasks/{id}`         | Update subtask                       | Yes           |
+| DELETE | `/api/subtasks/{id}`         | Delete subtask                       | Yes           |
 
-### Premium Partners
+## 🛠 Installation Guide
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Prerequisites
+- PHP 8.1+
+- Composer 2.0+
+- MySQL 8.0+ or MariaDB 10.3+
+- Redis (for caching)
 
-## Contributing
+### Setup Instructions
+1. Clone repository:
+   git clone https://github.com/yourusername/task-management-api.git
+   cd task-management-api
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2-Install dependencies:
+    composer install
+    npm install
 
-## Code of Conduct
+3-Configure environment:
+    cp .env.example .env
+    php artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4-Setup database:
+    php artisan migrate --seed
 
-## Security Vulnerabilities
+5-Start development server:
+    php artisan serve
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+🧪 Testing
+Run the test suite:
+php artisan test.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+try this project with postman: https://documenter.getpostman.com/view/34383133/2sB2qZFiEB
