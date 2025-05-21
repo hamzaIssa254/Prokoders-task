@@ -30,7 +30,7 @@ A robust Task Management System API built with Laravel that enables users to:
 - **Full CRUD Operations** for Tasks and Subtasks
 - **Automatic Status Propagation** (Parent task updates when subtasks change)
 - **Email Notifications** upon subtask completion
-- **Redis Caching** for optimal performance
+- **Caching** for optimal performance
 - **Advanced Filtering** with pagination
 
 ### Technical Highlights
@@ -73,7 +73,7 @@ A robust Task Management System API built with Laravel that enables users to:
 - PHP 8.1+
 - Composer 2.0+
 - MySQL 8.0+ or MariaDB 10.3+
-- Redis (for caching)
+
 
 ### Setup Instructions
 1. Clone repository:
